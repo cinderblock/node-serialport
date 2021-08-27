@@ -2,8 +2,8 @@ name: Build
 on:
   push:
     tags:
-    - '@serialport/bindings@[1-9]+.[0-9]+.[0-9]+'
-    - 'force-build'
+      - '@serialport/bindings@[1-9]+.[0-9]+.[0-9]+'
+      - 'force-build'
 jobs:
   test:
     runs-on: ${{ matrix.config.os }}
@@ -15,11 +15,11 @@ jobs:
           - { os: ubuntu-latest, arch: x64 }
           - { os: windows-latest, arch: x64 }
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-      with:
-        node-version: 14.x
-    - run: npm ci
-    - run: npm run prebuild
-      env:
-        prebuild_upload: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14.x
+      - run: npm ci
+      - run: npm run prebuild
+        env:
+          prebuild_upload: ${{ secrets.GITHUB_TOKEN }}

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// outputs the path to an Arduino to stdout or an error to stderror
+// outputs the path to an Arduino to stdout or an error to stderr
 
 const SerialPort = require('../packages/serialport')
 SerialPort.list().then(ports => {

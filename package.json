@@ -10,7 +10,7 @@
   "scripts": {
     "rebuild": "lerna run --stream rebuild",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "format": "eslint packages test --fix",
+    "format": "eslint packages test --fix && prettier --write .",
     "generate": "plop",
     "lint": "eslint packages test && lerna run --stream lint",
     "outdated": "lerna exec --no-bail npm outdated && npm outdated",
@@ -35,7 +35,6 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-mocha": "^8.0.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-promise": "^4.3.1",
     "lerna": "^3.22.1",
     "mocha": "^8.3.0",

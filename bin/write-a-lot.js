@@ -14,7 +14,7 @@ async function findArduino() {
       return port.path
     }
   }
-  throw new Error('No arduinos found')
+  throw new Error('No Arduinos found')
 }
 
 findArduino().then(

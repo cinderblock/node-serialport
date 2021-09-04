@@ -7,9 +7,17 @@
     'include_dirs': [
       '<!(node -e "require(\'nan\')")'
     ],
+    'variables': {
+      'generate_coverage': '<!(echo $GENERATE_COVERAGE)',
+    },
     'conditions': [
       ['OS=="win"',
         {
+          'cflags+': ['--coverage'],
+          'cflags_cc+': ['--coverage'],
+          'link_settings': {
+              'libraries+': ['-lgcov'],
+          },
           'defines': ['CHECK_NODE_MODULE_VERSION'],
           'sources': [
             'src/serialport_win.cpp'
@@ -62,6 +70,15 @@
             'src/poller.cpp'
           ]
         }
+      ],
+      ['generate_coverage=="yes"',
+        {
+          'cflags+': ['--coverage'],
+          'cflags_cc+': ['--coverage'],
+          'link_settings': {
+              'libraries+': ['-lgcov'],
+          },
+        },
       ]
     ]
   }],

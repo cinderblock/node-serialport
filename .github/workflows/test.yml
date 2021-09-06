@@ -46,6 +46,14 @@ jobs:
         # env:
         #   GENERATE_COVERAGE: 'yes'
 
+        # Check for expected gcno files
+      - if: runner.os == 'macOS'
+        run: find . -name node_modules -o -name .git -prune -false -o -name '*.gcno'
+
+        # Check for expected gcno files
+      - if: runner.os == 'macOS'
+        run: find . -name node_modules -o -name .git -prune -false -o -name '*.gcda'
+
         # Run tests and generate coverage information
       - run: npm test
 

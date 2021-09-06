@@ -90,6 +90,18 @@
                     # '-lmissing',
                   ],
                 },
+                'conditions': [
+                  ['OS=="mac"',
+                    {
+                      'link_settings': {
+                        'libraries': [
+                          # TODO: I feel like there is a cleaner way to do this
+                          '-Wl,-L,/usr/local/lib/gcc/9/gcc/x86_64-apple-darwin19/9.4.0',
+                        ],
+                      },
+                    }
+                  ],
+                ]
               },
             ]
           ],

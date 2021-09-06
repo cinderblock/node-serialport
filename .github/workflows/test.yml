@@ -36,7 +36,7 @@ jobs:
         run: brew install lcov
 
       - if: runner.os == 'macOS'
-        run: find /usr -name libgcov.a
+        run: 'find /usr -name libgcov.a || :'
 
       - run: npm ci
 

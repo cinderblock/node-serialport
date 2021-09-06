@@ -49,7 +49,8 @@ jobs:
         # Run tests and generate coverage information
       - run: npm test
 
-      - run: find . -name '*.gcda' -type f
+      - if: runner.os == 'macOS'
+        run: find / -name '*.gcda' -type f
 
         # Convert gcov `gcda` coverage information to lcov format, strip coverage info of external dependencies, and publish reports
       - run: npm run coverage

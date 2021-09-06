@@ -96,7 +96,7 @@
                       'link_settings': {
                         'libraries': [
                           # TODO: I feel like there is a cleaner way to do this
-                          '-v -Wl,-L,/usr/local/lib/gcc/9/gcc/x86_64-apple-darwin19/9.4.0 -Wl,-lgcov',
+                          '-v -Wl,-L,/usr/local/lib/gcc/9/gcc/x86_64-apple-darwin19/9.4.0 -Wl,-lgcov -Wl,--coverage',
                         ],
                       },
                       'xcode_settings': {

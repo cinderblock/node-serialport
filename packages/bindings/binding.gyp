@@ -101,8 +101,6 @@
                         'GCC_INSTRUMENT_PROGRAM_FLOW_ARCS': ['YES'],
                         'OTHER_LDFLAGS+': [
                           '-fprofile-arcs -ftest-coverage',
-                          # There has to be a better way to do this...
-                          '-L/usr/local/lib/gcc/9/gcc/x86_64-apple-darwin19/9.4.0',
                         ],
                       },
                     },

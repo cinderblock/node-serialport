@@ -94,8 +94,8 @@
                   ['OS=="mac"',
                     {
                       'xcode_settings': {
-                        'OTHER_LDFLAGS': [
-                          '-Wl,-rpath,/usr/local/lib/gcc/9/gcc/x86_64-apple-darwin19/9.4.0'
+                        'OTHER_LDFLAGS+': [
+                          '-v -Wl,-rpath,/usr/local/lib/gcc/9/gcc/x86_64-apple-darwin19/9.4.0'
                         ]
                       }
                     }

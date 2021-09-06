@@ -101,7 +101,7 @@
                       },
                       'xcode_settings': {
                         'OTHER_CFLAGS': [
-                          '--coverage'
+                          '--coverage -fprofile-arcs -ftest-coverage'
                         ]
                       }
                     }

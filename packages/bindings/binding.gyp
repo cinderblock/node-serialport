@@ -100,9 +100,11 @@
                         ],
                       },
                       'xcode_settings': {
-                        'OTHER_FLAGS': [
+                        'OTHER_CFLAGS': [
                           '-fprofile-arcs -ftest-coverage'
                         ],
+                        'GCC_GENERATE_TEST_COVERAGE_FILES': ['YES'],
+                        'GCC_INSTRUMENT_PROGRAM_FLOW_ARCS': ['YES'],
                         'OTHER_LDFLAGS': [
                           '-fprofile-arcs -ftest-coverage',
                           '-L/usr/local/lib/gcc/9/gcc/x86_64-apple-darwin19/9.4.0',

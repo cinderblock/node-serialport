@@ -32,9 +32,9 @@ jobs:
       # Workaround for lerna blocking environment variables
       - run: touch packages/bindings/GENERATE_COVERAGE_FILE
       - run: npm run rebuild
-        env:
-          # Uncomment if environment variables work
-          #GENERATE_COVERAGE: 'yes'
+        # Uncomment if environment variables work
+        # env:
+        #   GENERATE_COVERAGE: 'yes'
       - run: npm test
       - run: npm run coverage
         env:

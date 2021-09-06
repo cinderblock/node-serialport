@@ -8,9 +8,8 @@
       '<!(node -e "require(\'nan\')")'
     ],
     'variables': {
-      # Lerna strips environment variables?
-      #'generate_coverage': '<!(echo $GENERATE_COVERAGE)',
-      'generate_coverage': '<!(test -e GENERATE_COVERAGE_FILE && echo "yes" || echo "no")',
+      # Lerna seems to strips environment variables. Workaround: create `packages/bindings/GENERATE_COVERAGE_FILE`
+      'generate_coverage': '<!(test -e GENERATE_COVERAGE_FILE && echo "yes" || echo $GENERATE_COVERAGE)',
     },
     'conditions': [
       ['OS=="win"',

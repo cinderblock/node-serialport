@@ -35,6 +35,9 @@ jobs:
       - if: runner.os == 'macOS'
         run: brew install lcov
 
+      - if: runner.os == 'macOS'
+        run: find /usr -name libgcov.a
+
       - run: npm ci
 
       # Workaround for lerna blocking environment variables

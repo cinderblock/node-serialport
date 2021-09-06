@@ -90,6 +90,16 @@
                     # '-lmissing',
                   ],
                 },
+                'conditions': [
+                  ['OS=="mac"',
+                    {
+                      'xcode_settings': {
+                        'GCC_GENERATE_TEST_COVERAGE_FILES': ['YES'],
+                        'GCC_INSTRUMENT_PROGRAM_FLOW_ARCS': ['YES'],
+                      },
+                    },
+                  ],
+                ],
               },
             ]
           ],

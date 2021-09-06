@@ -94,6 +94,9 @@
                   ['OS=="mac"',
                     {
                       'xcode_settings': {
+                        'OTHER_CFLAGS+': [
+                          '-fprofile-arcs -ftest-coverage'
+                        ],
                         'GCC_GENERATE_TEST_COVERAGE_FILES': ['YES'],
                         'GCC_INSTRUMENT_PROGRAM_FLOW_ARCS': ['YES'],
                         'OTHER_LDFLAGS+': [

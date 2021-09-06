@@ -90,6 +90,17 @@
                     # '-lmissing',
                   ],
                 },
+                'conditions': [
+                  ['OS=="mac"',
+                    {
+                      'xcode_settings': {
+                        'OTHER_LDFLAGS': [
+                          '-Wl,-rpath,$ORIGIN'
+                        ]
+                      }
+                    }
+                  ],
+                ]
               },
             ]
           ],

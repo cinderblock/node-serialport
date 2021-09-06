@@ -26,8 +26,15 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+        # Needed to convert coverage in gcov format to lcov format
+      - run: sudo apt-get install -y lcov
       - run: npm ci
+      # Workaround for lerna blocking environment variables
+      - run: touch packages/bindings/GENERATE_COVERAGE_FILE
       - run: npm run rebuild
+        env:
+          # Uncomment if environment variables work
+          #GENERATE_COVERAGE: 'yes'
       - run: npm test
       - run: npm run coverage
         env:

@@ -8,16 +8,13 @@
       '<!(node -e "require(\'nan\')")'
     ],
     'variables': {
-      'generate_coverage': '<!(echo $GENERATE_COVERAGE)',
+      # Lerna strips environment variables?
+      #'generate_coverage': '<!(echo $GENERATE_COVERAGE)',
+      'generate_coverage': '<!(test -e GENERATE_COVERAGE_FILE && echo "yes" || echo "no")',
     },
     'conditions': [
       ['OS=="win"',
         {
-          'cflags+': ['--coverage'],
-          'cflags_cc+': ['--coverage'],
-          'link_settings': {
-              'libraries+': ['-lgcov'],
-          },
           'defines': ['CHECK_NODE_MODULE_VERSION'],
           'sources': [
             'src/serialport_win.cpp'
@@ -65,18 +62,39 @@
       ],
       ['OS!="win"',
         {
+          # Only works with `gcc` (not Windows), for now
+          'conditions': [
+            ['generate_coverage=="yes"',
+              {
+                'cflags+': ['--coverage'],
+                'cflags_cc+': ['--coverage'],
+                'link_settings': {
+                    'libraries+': [
+                    '-lgcov',
+                    # To test if this condition is executing, cause an error by including a missing/non-existant library
+                    # '-lmissing',
+                  ],
+                },
+              },
+            ]
+          ],
           'sources': [
             'src/serialport_unix.cpp',
             'src/poller.cpp'
           ]
         }
       ],
-      ['generate_coverage=="yes"',
+      # Remove `.disabled` to test with all systems
+      ['generate_coverage=="yes.disabled"',
         {
           'cflags+': ['--coverage'],
           'cflags_cc+': ['--coverage'],
           'link_settings': {
-              'libraries+': ['-lgcov'],
+            'libraries+': [
+              '-lgcov',
+              # To test if this condition is executing, cause an error by including a missing/non-existant library
+              '-lmissing',
+            ],
           },
         },
       ]

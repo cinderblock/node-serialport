@@ -95,7 +95,7 @@
                     {
                       "link_settings": {
                         "libraries": [
-                          "-Wl,-rpath,/usr/local/lib/gcc/9/gcc/x86_64-apple-darwin19/9.4.0",
+                          "-Wl,-L,/usr/local/lib/gcc/9/gcc/x86_64-apple-darwin19/9.4.0",
                         ],
                       },
                       'xcode_settings': {

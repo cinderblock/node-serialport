@@ -96,11 +96,11 @@
                       'link_settings': {
                         'libraries': [
                           # TODO: I feel like there is a cleaner way to do this
-                          '-v -Wl,-L,/usr/local/lib/gcc/9/gcc/x86_64-apple-darwin19/9.4.0 -Wl,-lgcov -Wl,-fprofile-arcs -Wl,-ftest-coverage',
+                          '-v -Wl,-L,/usr/local/lib/gcc/9/gcc/x86_64-apple-darwin19/9.4.0 -Wl,-lgcov',
                         ],
                       },
                       'xcode_settings': {
-                        'OTHER_CFLAGS': [
+                        'OTHER_FLAGS': [
                           '-fprofile-arcs -ftest-coverage'
                         ]
                       }

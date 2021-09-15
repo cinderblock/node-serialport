@@ -53,16 +53,16 @@ jobs:
         run: npm run coverage:windows
         env:
           CI: true
-      - if: runner.os == 'Windows'
-        run: npm run coverage:publish
 
         # Run tests and generate coverage information
       - if: runner.os != 'Windows'
         run: npm test
       - if: runner.os != 'Windows'
-        # Convert gcov `gcda` coverage information to lcov format, strip coverage info of external dependencies, and publish reports
+        # Convert gcov `gcda` coverage information to lcov format, strip coverage info of external dependencies
         run: npm run coverage
         env:
           CI: true
+
+      - run: npm run coverage:publish
 
       - run: git status

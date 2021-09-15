@@ -9,10 +9,10 @@
   "license": "MIT",
   "scripts": {
     "rebuild": "lerna run --stream rebuild",
-    "coverage": "npm run coverage:lcov:capture && npm run coverage:lcov:strip-external && npm run coverage:publish",
+    "coverage": "npm run coverage:lcov:capture && npm run coverage:lcov:strip-external",
     "coverage:lcov:capture": "lcov --capture --directory packages/bindings/build/Release/obj.target/bindings/src --output-file coverage/gcc.lcov",
     "coverage:lcov:strip-external": "lcov --extract coverage/gcc.lcov '*/packages/bindings/src/*' --output-file coverage/gcc.lcov",
-    "coverage:publish": "codecov --disable=gcov --file=coverage\\lcov.info --file=coverage\\gcc.xml --file=coverage\\gcc.lcov",
+    "coverage:publish": "codecov --disable=gcov --file=coverage/lcov.info --file=coverage/gcc.xml --file=coverage/gcc.lcov",
     "coverage:windows": "C:\\Program Files\\OpenCppCoverage\\OpenCppCoverage.exe --cover_children --modules \"*.node\" --source \"packages\\bindings\\src\\*\" --export_type=cobertura:coverage/cpp.xml -- npm.cmd test",
     "format": "eslint packages test --fix",
     "generate": "plop",

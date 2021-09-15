@@ -58,11 +58,11 @@ jobs:
 
         # Run tests and generate coverage information
       - if: runner.os != 'Windows'
-      - run: npm test
+        run: npm test
       - if: runner.os != 'Windows'
         # Convert gcov `gcda` coverage information to lcov format, strip coverage info of external dependencies, and publish reports
         run: npm run coverage
         env:
           CI: true
 
-        run: git status
+    - run: git status

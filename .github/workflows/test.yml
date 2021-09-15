@@ -29,6 +29,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - if: runner.os == 'Windows'
+        run: choco install OpenCppCoverage
+
         # Needed to convert coverage in gcov format to lcov format
       - if: runner.os == 'Linux'
         run: sudo apt-get install -y lcov
@@ -37,23 +40,27 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run rebuild
+      - if: runner.os == 'Windows'
+        run: npm run rebuild -- -- --debug
+
+      - if: runner.os != 'Windows'
+        run: npm run rebuild
         env:
           GENERATE_COVERAGE: yes
 
-        # Run tests and generate coverage information
-      - run: npm test
+      - if: runner.os == 'Windows'
+        # Runs tests and generates coverage report
+        run: npm run coverage:windows
+        env:
+          CI: true
+      - if: runner.os == 'Windows'
+        run: npm run coverage:publish
 
-        # No C/C++ coverage support on Windows, yet
+        # Run tests and generate coverage information
+      - if: runner.os != 'Windows'
+      - run: npm test
       - if: runner.os != 'Windows'
         # Convert gcov `gcda` coverage information to lcov format, strip coverage info of external dependencies, and publish reports
         run: npm run coverage
-        env:
-          CI: true
-
-        # No C/C++ coverage support on Windows, yet
-      - if: runner.os == 'Windows'
-        # Just publish
-        run: npm run coverage:publish
         env:
           CI: true

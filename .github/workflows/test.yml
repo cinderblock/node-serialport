@@ -28,9 +28,21 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run rebuild
+      - run: npm test
+      - run: npm run coverage
+        env:
+          CI: true
 
       - if: runner.os == 'Windows'
-        run: choco install OpenCppCoverage
+        run: |
+          choco install OpenCppCoverage
+          set PATH
+          echo %path:;=&echo.%
+
+      - if: runner.os == 'Windows'
+        run: echo %path:;=&echo.%
 
         # Needed to convert coverage in gcov format to lcov format
       - if: runner.os == 'Linux'

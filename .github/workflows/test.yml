@@ -32,6 +32,7 @@ jobs:
       - if: runner.os == 'Windows'
         run: |
           choco install OpenCppCoverage
+          setx PATH "$env:path;\the\directory\to\add" -m
           refreshenv
           $env:path.split(";")
 

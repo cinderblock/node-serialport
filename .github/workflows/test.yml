@@ -32,11 +32,10 @@ jobs:
       - if: runner.os == 'Windows'
         run: |
           choco install OpenCppCoverage
-          set PATH
-          echo %path:;=&echo.%
+          $env:path.split(";")
 
       - if: runner.os == 'Windows'
-        run: echo %path:;=&echo.%
+        run: $env:path.split(";")
 
         # Needed to convert coverage in gcov format to lcov format
       - if: runner.os == 'Linux'

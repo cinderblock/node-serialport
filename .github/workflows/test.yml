@@ -29,16 +29,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+        # Windows is handled a little differently throughout the workflow
       - if: runner.os == 'Windows'
-        run: |
-          choco install OpenCppCoverage
-          setx PATH "$env:path;\the\directory\to\add" -m
-          refreshenv
-          $env:path.split(";")
-
-      - if: runner.os == 'Windows'
-        run: $env:path.split(";")
-
+        run: choco install OpenCppCoverage
         # Needed to convert coverage in gcov format to lcov format
       - if: runner.os == 'Linux'
         run: sudo apt-get install -y lcov
@@ -53,6 +46,7 @@ jobs:
       - if: runner.os != 'Windows'
         run: npm run rebuild
         env:
+          # Enable gcov in binaries
           GENERATE_COVERAGE: yes
 
       - if: runner.os == 'Windows'
@@ -61,15 +55,20 @@ jobs:
         env:
           CI: true
 
-        # Run tests and generate coverage information
       - if: runner.os != 'Windows'
+        # Run tests and generate coverage information
         run: npm test
       - if: runner.os != 'Windows'
         # Convert gcov `gcda` coverage information to lcov format, strip coverage info of external dependencies
-        run: npm run coverage
+        run: npm run coverage:lcov
         env:
           CI: true
 
-      - run: npm run coverage:publish
+      # Publish coverage information to codecov.io
+      - if: runner.os == 'Windows'
+        run: npm run coverage:publish:windows
+      - if: runner.os != 'Windows'
+        run: npm run coverage:publish:lcov
+      - run: npm run coverage:publish:node
 
       - run: git status

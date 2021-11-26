@@ -28,6 +28,15 @@ jobs:
       - run: |
           choco install OpenCppCoverage
           npm install npm@7
+          choco install com0com
+
+      - uses: suisei-cn/actions-download-file@v1
+        # id: com0com
+        name: Download com0com installer
+        with:
+          url: 'https://pilotfiber.dl.sourceforge.net/project/com0com/com0com/3.0.0.0/com0com-3.0.0.0-i386-and-x64-signed.zip'
+          target: com0com/
+      - run: 7z x com0com/com0com-3.0.0.0-i386-and-x64-signed.zip
 
       - run: npm ci
 
@@ -38,6 +47,7 @@ jobs:
       - run: npm run coverage:windows
         env:
           CI: true
+          TEST_PORT: COM0
 
       # Publish coverage information to codecov.io
       - run: npm run coverage:publish:windows

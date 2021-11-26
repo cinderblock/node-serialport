@@ -74,8 +74,8 @@ jobs:
       - run: sudo apt-get install -y lcov socat
 
       - name: Simulate a loopback device at /dev/loopback
-        # Using the same file for both ports gets loopback functionality
-        run: sudo socat pty,link=/dev/loopback,raw,user=runner pty,link=/dev/loopback,raw,user=runner &
+        # User `cat` to echo back all bytes received. There's probably a better way to do this.
+        run: sudo socat pty,link=/dev/loopback,raw,user=runner system:cat &
 
       - run: npm ci
 
@@ -115,8 +115,8 @@ jobs:
       - run: brew install lcov socat
 
       - name: Simulate a loopback device at /tmp/loopback
-        # Using the same file for both ports gets loopback functionality
-        run: sudo socat pty,link=/tmp/loopback,raw,user=runner pty,link=/tmp/loopback,raw,user=runner &
+        # User `cat` to echo back all bytes received. There's probably a better way to do this.
+        run: sudo socat pty,link=/tmp/loopback,raw,user=runner system:cat &
 
       # DEBUG: Make sure it's still there
       - run: sudo ls -Ll /tmp/loopback

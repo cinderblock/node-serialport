@@ -118,11 +118,6 @@ jobs:
         # User `cat` to echo back all bytes received. There's probably a better way to do this.
         run: sudo socat pty,link=/tmp/loopback,raw,user=runner system:cat &
 
-      # DEBUG: Make sure it's still there
-      - run: sudo ls -Ll /tmp/loopback
-      - run: find /usr/local/lib/gcc -name libgcov.a
-      - run: dirname $(find /usr/local/lib/gcc -name libgcov.a)
-
       - run: npm ci
       # Rebuild the project with coverage instrumentation
       - run: npm run rebuild

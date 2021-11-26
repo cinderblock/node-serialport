@@ -71,10 +71,7 @@ jobs:
       - run: sudo apt-get install -y lcov socat
 
       - name: Simulate a loopback device at /dev/loopback
-        run: sudo socat pty,link=/dev/loopback,raw pty,link=/dev/loopback,raw &
-
-      # DEBUG: Make sure it's still there
-      - run: whoami
+        run: sudo socat pty,link=/dev/loopback,raw,user=runner pty,link=/dev/loopback,raw &
 
       - run: npm ci
 

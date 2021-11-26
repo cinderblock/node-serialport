@@ -114,7 +114,8 @@ jobs:
       - run: brew install lcov socat
 
       - name: Simulate a loopback device at /dev/loopback
-        run: sudo socat pty,link=/dev/loopback,raw pty,link=/dev/loopback,raw &
+        # Works as long as loopback_ is not opened for some reason...
+        run: sudo socat pty,link=/dev/loopback,raw,echo=1 pty,link=/dev/loopback_ &
 
       # DEBUG: Make sure it's still there
       - run: sudo ls -Ll /dev/loopback

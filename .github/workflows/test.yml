@@ -71,7 +71,7 @@ jobs:
       - run: sudo apt-get install -y lcov socat
 
       - name: Simulate a loopback device at /dev/loopback
-        run: sudo socat pty,link=/dev/loopback,raw,user=runner pty,link=/dev/loopback,raw &
+        run: sudo socat pty,link=/dev/loopback,raw,user=runner pty,link=/dev/loopback,raw,user=runner &
 
       - run: npm ci
 
@@ -110,12 +110,13 @@ jobs:
       # Install needed extra tooling
       - run: brew install lcov socat
 
-      - name: Simulate a loopback device at /dev/loopback
+      - name: Simulate a loopback device at /tmp/loopback
         # Works as long as loopback_ is not opened for some reason...
-        run: sudo socat pty,link=/dev/loopback,raw,echo=1 pty,link=/dev/loopback_ &
+        run: sudo socat pty,link=/tmp/loopback,raw,user=runner pty,link=/tmp/loopback,raw,user=runner &
 
       # DEBUG: Make sure it's still there
-      - run: sudo ls -Ll /dev/loopback
+      - run: sudo ls -Ll /tmp/loopback
+      - run: whoami
 
       - run: npm ci
       # Rebuild the project with coverage instrumentation
@@ -132,7 +133,7 @@ jobs:
           npm run coverage:lcov
         env:
           CI: true
-          TEST_PORT: /dev/loopback
+          TEST_PORT: /tmp/loopback
 
       # Publish coverage information to codecov.io
       - run: npm run coverage:publish:lcov

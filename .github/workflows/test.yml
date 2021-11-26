@@ -120,7 +120,8 @@ jobs:
 
       # DEBUG: Make sure it's still there
       - run: sudo ls -Ll /tmp/loopback
-      - run: find /usr/local/lib/gcc -name libgcov.o
+      - run: find /usr/local/lib/gcc -name libgcov.a
+      - run: dirname $(find /usr/local/lib/gcc -name libgcov.a)
 
       - run: npm ci
       # Rebuild the project with coverage instrumentation

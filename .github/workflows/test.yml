@@ -70,8 +70,8 @@ jobs:
       # Needed to convert coverage in gcov format to lcov format and cleanup
       - run: sudo apt-get install -y lcov socat
 
-      # Simulate a loopback device to test with
-      - run: sudo socat pty,link=/dev/loopback,raw,echo=0 pty,link=/dev/loopback,raw,echo=0 &
+      - name: Simulate a loopback device at /dev/loopback
+        run: sudo socat pty,link=/dev/loopback,raw,echo=0 pty,link=/dev/loopback,raw,echo=0 &
 
       # DEBUG: Make sure it's still there
       - run: whoami
@@ -113,8 +113,8 @@ jobs:
       # Install needed extra tooling
       - run: brew install lcov socat
 
-      # Simulate a loopback device to test with
-      - run: sudo socat pty,link=/dev/loopback,raw,echo=0 pty,link=/dev/loopback,raw,echo=0 &
+      - name: Simulate a loopback device at /dev/loopback
+        run: sudo socat pty,link=/dev/loopback,raw,echo=0 pty,link=/dev/loopback,raw,echo=0 &
 
       # DEBUG: Make sure it's still there
       - run: sudo ls -Ll /dev/loopback

@@ -68,7 +68,7 @@ jobs:
       # Install needed extra tooling
 
       # Needed to convert coverage in gcov format to lcov format and cleanup
-      - run: sudo apt-get install -y lcov
+      - run: sudo apt-get install -y lcov socat
 
       # Simulate a loopback device to test with
       - run: sudo socat pty,link=/dev/loopback,raw,echo=0 pty,link=/dev/loopback,raw,echo=0 &
@@ -111,7 +111,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       # Install needed extra tooling
-      - run: brew install lcov
+      - run: brew install lcov socat
 
       # Simulate a loopback device to test with
       - run: sudo socat pty,link=/dev/loopback,raw,echo=0 pty,link=/dev/loopback,raw,echo=0 &

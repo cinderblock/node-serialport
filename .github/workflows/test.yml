@@ -28,7 +28,7 @@ jobs:
       - run: |
           choco install OpenCppCoverage
           npm install npm@7
-          choco install com0com
+        # choco install com0com
 
       - uses: suisei-cn/actions-download-file@v1
         # id: com0com

@@ -74,7 +74,7 @@ jobs:
       - run: sudo socat pty,link=/dev/loopback,raw,echo=0 pty,link=/dev/loopback,raw,echo=0 &
 
       # DEBUG: Make sure it's still there
-      - run: sudo ls -Ll /dev/loopback
+      - run: whoami
 
       - run: npm ci
 

@@ -441,6 +441,18 @@ function testBinding(bindingName, Binding, testPort) {
           it('Cannot be tested further. Set the TEST_PORT env var with an available serialport for more testing.')
           return
         }
+
+        let binding
+        beforeEach(() => {
+          binding = new Binding()
+          return binding.open(testPort, defaultOpenOptions)
+        })
+
+        afterEach(() => binding.close())
+
+        testFeature('set.set', 'sets flags on the port', () => {
+          return binding.set(defaultSetFlags)
+        })
       })
 
       // because of the nature of opening and closing the ports a fair amount of data

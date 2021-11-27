@@ -75,13 +75,6 @@ jobs:
       # Needed to convert coverage in gcov format to lcov format and cleanup
       - run: sudo apt-get install -y lcov socat
 
-      - name: Simulate a loopback device at /dev/loopback
-        # User `cat` to echo back all bytes received. There's probably a better way to do this.
-        run: sudo socat pty,link=/dev/loopback,raw,user=runner pty,link=/dev/loopback,raw,user=runner &
-      - name: Ensure /dev/loopback exists
-        # Make sure the loopback device exists so that tests don't fail later
-        run: ls -l /dev/loopback
-
       - run: npm ci
 
       # Rebuild the project with coverage instrumentation
@@ -89,6 +82,13 @@ jobs:
         env:
           # Enable gcov in binaries
           GENERATE_COVERAGE: yes
+
+      - name: Simulate a loopback device at /dev/loopback
+        # User `cat` to echo back all bytes received. There's probably a better way to do this.
+        run: sudo socat pty,link=/dev/loopback,raw,user=runner "system:sleep 5 && echo -n READY && cat" &
+      - name: Ensure /dev/loopback exists
+        # Make sure the loopback device exists so that tests don't fail later
+        run: ls -l /dev/loopback
 
       # Run tests and generate coverage report
 

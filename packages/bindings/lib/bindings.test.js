@@ -473,7 +473,9 @@ function testBinding(bindingName, Binding, testPort) {
         afterEach(() => binding.isOpen && binding.close())
 
         it("doesn't throw if the port is open", async () => {
-          await binding.read(buffer, 0, buffer.length)
+          const read = binding.read(buffer, 0, buffer.length)
+          await binding.write(readyData)
+          await read
         })
 
         it('returns at maximum the requested number of bytes and the buffer', async () => {

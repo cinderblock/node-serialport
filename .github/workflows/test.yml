@@ -79,6 +79,7 @@ jobs:
         # User `cat` to echo back all bytes received. There's probably a better way to do this.
         run: sudo socat pty,link=/dev/loopback,raw,user=runner pty,link=/dev/loopback,raw,user=runner &
       - name: Ensure /dev/loopback exists
+        # Make sure the loopback device exists so that tests don't fail later
         run: ls -l /dev/loopback
 
       - run: npm ci
@@ -121,6 +122,7 @@ jobs:
         # User `cat` to echo back all bytes received. There's probably a better way to do this.
         run: sudo socat pty,link=/tmp/loopback,raw,user=runner,ioctl-void=IOSSIOSPEED system:cat &
       - name: Ensure /tmp/loopback exists
+        # Make sure the loopback device exists so that tests don't fail later
         run: ls -l /tmp/loopback
 
       - run: npm ci

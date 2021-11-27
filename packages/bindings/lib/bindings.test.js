@@ -473,7 +473,7 @@ function testBinding(bindingName, Binding, testPort) {
 
         afterEach(() => binding.isOpen && binding.close())
 
-        it("doesn't throw if the port is open", () => {
+        it("doesn't throw if the port is open", async () => {
           await binding.read(buffer, 0, buffer.length)
         })
 

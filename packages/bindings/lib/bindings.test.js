@@ -474,7 +474,7 @@ function testBinding(bindingName, Binding, testPort) {
 
         it("doesn't throw if the port is open", function () {
           this.timeout(10000)
-          return binding.read(buffer, 0, buffer.length)
+          return Promise.all([binding.read(buffer, 0, buffer.length), binding.write(readyData)])
         })
 
         it('returns at maximum the requested number of bytes and the buffer', async () => {

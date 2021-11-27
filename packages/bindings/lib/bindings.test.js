@@ -478,8 +478,7 @@ function testBinding(bindingName, Binding, testPort) {
         })
 
         it('returns at maximum the requested number of bytes and the buffer', async () => {
-          const read = binding.read(buffer, 0, 1)
-          const { bytesRead, buffer: returnedBuffer } = await read
+          const { bytesRead, buffer: returnedBuffer } = await binding.read(buffer, 0, 1)
           assert.equal(bytesRead, 1)
           assert.equal(buffer, returnedBuffer)
         })

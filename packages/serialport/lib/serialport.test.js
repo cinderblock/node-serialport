@@ -19,6 +19,7 @@ const DetectedBinding = SerialPort.Binding
 const MockBinding = require('@serialport/binding-mock')
 
 const mockTestPort = '/dev/exists'
+const mockBadPort = 'COMBAD'
 
 // eslint-disable-next-line no-use-before-define
 integrationTest('mock', mockTestPort, MockBinding)
@@ -61,14 +62,14 @@ function integrationTest(platform, testPort, Binding) {
 
     describe('constructor', () => {
       it('provides an error in callback when trying to open an invalid port', done => {
-        new SerialPort('COMBAD', err => {
+        new SerialPort(mockBadPort, err => {
           assert.instanceOf(err, Error)
           done()
         })
       })
 
       it('emits an error event when trying to open an invalid port', done => {
-        const port = new SerialPort('COM99')
+        const port = new SerialPort(mockBadPort)
         port.on('error', err => {
           assert.instanceOf(err, Error)
           done()

@@ -468,18 +468,17 @@ function testBinding(bindingName, Binding, testPort) {
           buffer = Buffer.alloc(readyData.length)
           binding = new Binding()
           await binding.open(testPort, defaultOpenOptions)
+          setTimeout(() => binding.write(readyData), 100)
         })
 
         afterEach(() => binding.isOpen && binding.close())
 
-        it("doesn't throw if the port is open", function () {
-          this.timeout(10000)
-          return Promise.all([binding.read(buffer, 0, buffer.length), binding.write(readyData)])
+        it("doesn't throw if the port is open", () => {
+          await binding.read(buffer, 0, buffer.length)
         })
 
         it('returns at maximum the requested number of bytes and the buffer', async () => {
           const read = binding.read(buffer, 0, 1)
-          await binding.write(Buffer.from([0]))
           const { bytesRead, buffer: returnedBuffer } = await read
           assert.equal(bytesRead, 1)
           assert.equal(buffer, returnedBuffer)

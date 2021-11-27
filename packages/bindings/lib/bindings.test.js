@@ -468,7 +468,7 @@ function testBinding(bindingName, Binding, testPort) {
           buffer = Buffer.alloc(readyData.length)
           binding = new Binding()
           await binding.open(testPort, defaultOpenOptions)
-          setTimeout(() => binding.write(readyData), 100)
+          await binding.write(readyData)
         })
 
         afterEach(() => binding.isOpen && binding.close())

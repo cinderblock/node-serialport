@@ -52,7 +52,7 @@ jobs:
       - run: npm run coverage:windows
         env:
           CI: true
-          TEST_PORT: COM0
+          TEST_PORT: COM2
 
       # Publish coverage information to codecov.io
       - run: npm run coverage:publish:windows

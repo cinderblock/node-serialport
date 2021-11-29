@@ -14,5 +14,8 @@
     "baudrate.1000000_check": false,
     "baudrate.250000_check": false
   },
-  "linux": {}
+  "linux": {
+    "get.get": false,
+    "set.set": false
+  }
 }

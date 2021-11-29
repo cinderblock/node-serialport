@@ -480,6 +480,7 @@ function testBinding(bindingName, Binding, testPort) {
           buffer = Buffer.alloc(readyData.length)
           binding = new Binding()
           await binding.open(testPort, defaultOpenOptions)
+          if (process.platform === 'win32') await binding.write(readyData)
         })
 
         afterEach(() => binding.isOpen && binding.close())

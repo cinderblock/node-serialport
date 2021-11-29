@@ -54,8 +54,7 @@ function integrationTest(platform, testPort, Binding) {
           }
 
           const ports = await SerialPort.list()
-          const foundPort = ports.some(port => normalizePath(port.path) === normalizePath(testPort))
-          assert.isTrue(foundPort)
+          ports.map(normalizePath).should.contain(normalizePath(testPort))
         })
       })
     })

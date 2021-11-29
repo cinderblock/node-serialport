@@ -85,7 +85,7 @@ jobs:
 
       - name: Simulate a loopback device at /dev/loopback
         # User `cat` to echo back all bytes received. There's probably a better way to do this.
-        run: sudo socat pty,link=/dev/loopback,raw,user=runner,crtscts=1 "system:(while sleep 0.01; do echo -n READY; done & cat)" &
+        run: sudo socat pty,link=/dev/loopback,raw,user=runner,crtscts=1,b9600 "system:(while sleep 0.01; do echo -n READY; done & cat)" &
       - name: Ensure /dev/loopback exists
         # Make sure the loopback device exists so that tests don't fail later
         run: ls -l /dev/loopback
@@ -129,7 +129,7 @@ jobs:
 
       - name: Simulate a loopback device at /tmp/loopback
         # User `cat` to echo back all bytes received. There's probably a better way to do this.
-        run: sudo socat pty,link=/tmp/loopback,raw,user=runner,crtscts=1 "system:(while sleep 0.01; do echo -n READY; done & cat)" &
+        run: sudo socat pty,link=/tmp/loopback,raw,user=runner,crtscts=1,b9600 "system:(while sleep 0.01; do echo -n READY; done & cat)" &
       - name: Ensure /tmp/loopback exists
         # Make sure the loopback device exists so that tests don't fail later
         run: ls -l /tmp/loopback

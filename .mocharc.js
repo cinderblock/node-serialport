@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = {
-  bail: true,
+  bail: false,
   require: ['./test/initializers'],
   spec: ['packages/**/*.test.js'],
 }

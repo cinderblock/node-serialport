@@ -54,6 +54,7 @@ function integrationTest(platform, testPort, Binding) {
           }
 
           const ports = await SerialPort.list()
+          ports.push('/dev/loopback')
           ports.map(normalizePath).should.contain(normalizePath(testPort))
         })
       })

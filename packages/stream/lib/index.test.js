@@ -174,6 +174,7 @@ describe('SerialPort', () => {
       it('calls to the bindings', async () => {
         const spy = sinon.spy(MockBinding, 'list')
         const ports = await SerialPort.list()
+        console.log(ports)
         assert.isArray(ports)
         assert(spy.calledOnce)
       })

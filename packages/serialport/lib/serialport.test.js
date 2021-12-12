@@ -1,10 +1,13 @@
 const crypto = require('crypto')
 const SerialPort = require('../')
 
-SerialPort.list().then(ports => {
-  console.log("Found ports:")
-  console.log(ports)
-}, () => console.log("error getting port list"));
+SerialPort.list().then(
+  ports => {
+    console.log('Found ports:')
+    console.log(ports)
+  },
+  () => console.log('error getting port list')
+)
 
 let platform
 switch (process.platform) {

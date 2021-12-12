@@ -47,7 +47,6 @@ jobs:
       - name: com0com preinstalll
         working-directory: com0com
         run: |
-          ./setupc.exe preinstall
           ./setupc.exe update
           ./setupc.exe infclean
       - name: com0com setup CNCA0 <-> CNCB0

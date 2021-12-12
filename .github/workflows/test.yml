@@ -53,6 +53,9 @@ jobs:
       - name: com0com setup CNCA0 <-> CNCB0
         working-directory: com0com
         run: setupc.exe install 0 - -
+      - name: com0com setup COM# <-> COM#
+        working-directory: com0com
+        run: setupc.exe install PortName=COM# PortName=COM#
 
         env:
           CNC_INSTALL_COMX_COMX_PORTS: YES

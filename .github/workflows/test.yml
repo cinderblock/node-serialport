@@ -42,7 +42,7 @@ jobs:
       - name: Extract com0com installer
         run: 7z x com0com/com0com-3.0.0.0-i386-and-x64-signed.zip -ocom0com *_x64_signed.exe
       - name: Run com0com setup
-        run: com0com/Setup_com0com_v3.0.0.0_W7_x64_signed.exe
+        run: com0com/Setup_com0com_v3.0.0.0_W7_x64_signed.exe /V 4
         env:
           CNC_INSTALL_COMX_COMX_PORTS: YES
           CNC_INSTALL_CNCA0_CNCB0_PORTS: YES

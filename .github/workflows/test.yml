@@ -45,12 +45,14 @@ jobs:
 
         # Manual com0com install because the installer only works with a GUI
       - name: com0com preinstalll
+        working-directory: com0com
         run: |
-          com0com/setupc.exe preinstall
-          com0com/setupc.exe update
-          com0com/setupc.exe infclean
+          setupc.exe preinstall
+          setupc.exe update
+          setupc.exe infclean
       - name: com0com setup CNCA0 <-> CNCB0
-        run: com0com/setupc.exe install 0 - -
+        working-directory: com0com
+        run: setupc.exe install 0 - -
 
         env:
           CNC_INSTALL_COMX_COMX_PORTS: YES

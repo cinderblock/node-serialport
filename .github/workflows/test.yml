@@ -51,8 +51,6 @@ jobs:
           com0com/setupc.exe infclean
       - name: com0com setup CNCA0 <-> CNCB0
         run: com0com/setupc.exe install 0 - -
-      - name: com0com setup COM# <-> COM#
-        run: com0com/setupc.exe install PortName=COM# PortName=COM#
 
         env:
           CNC_INSTALL_COMX_COMX_PORTS: YES

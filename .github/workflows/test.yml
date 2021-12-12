@@ -44,7 +44,6 @@ jobs:
         env:
           CNC_INSTALL_COMX_COMX_PORTS: YES
           CNC_INSTALL_CNCA0_CNCB0_PORTS: YES
-          CNC_INSTALL_SKIP_SETUP_PREINSTALL: YES
           CNC_INSTALL_START_MENU_SHORTCUTS: NO
 
       - run: npm ci

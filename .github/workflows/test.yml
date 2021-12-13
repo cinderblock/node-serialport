@@ -35,10 +35,10 @@ jobs:
         name: Download Official com0com installer
         with:
           url: 'https://downloads.sourceforge.net/project/com0com/com0com/3.0.0.0/com0com-3.0.0.0-i386-and-x64-signed.zip'
-      - name: Extract com0com installer
-        run: 7z x com0com-3.0.0.0-i386-and-x64-signed.zip *_x64_signed.exe
-      - name: Extract com0com setup to install manually
-        run: 7z x Setup_com0com_v3.0.0.0_W7_x64_signed.exe -ocom0com
+      - name: Extract com0com binaries to com0com/
+        run: |
+          7z x com0com-3.0.0.0-i386-and-x64-signed.zip *_x64_signed.exe
+          7z x Setup_com0com_v3.0.0.0_W7_x64_signed.exe -ocom0com
 
         # Manual com0com install because the installer only works with a GUI
       - name: com0com preinstall

@@ -28,10 +28,7 @@ jobs:
       - run: echo color = always > ~/.npmrc
 
       # Install needed extra tooling
-      - run: |
-          choco install OpenCppCoverage
-          npm install npm@7
-        # choco install com0com
+      - run: choco install OpenCppCoverage
 
       - uses: suisei-cn/actions-download-file@v1
         # id: com0com
@@ -71,7 +68,7 @@ jobs:
       - name: Run npm test with coverage
         timeout-minutes: 1
         run: |
-          C:\Progra~1\OpenCppCoverage\OpenCppCoverage.exe --quiet --cover_children --modules "*.node" --source "packages\bindings\src\*" --export_type=cobertura:coverage/cpp.xml -- npm.cmd test -- --color
+          C:\Progra~1\OpenCppCoverage\OpenCppCoverage.exe --quiet --cover_children --modules "*.node" --source "packages\bindings\src\*" --export_type=cobertura:coverage/cpp.xml -- C:\Progra~1\nodejs\npm.cmd test -- --color
         env:
           CI: true
           TEST_PORT: COM2

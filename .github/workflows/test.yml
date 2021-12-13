@@ -36,14 +36,13 @@ jobs:
         with:
           url: 'https://downloads.sourceforge.net/project/com0com/com0com/3.0.0.0/com0com-3.0.0.0-i386-and-x64-signed.zip'
       - name: Extract com0com binaries to com0com/
-        run: |
-          7z x com0com-3.0.0.0-i386-and-x64-signed.zip *_x64_signed.exe
-          7z x Setup_com0com_v3.0.0.0_W7_x64_signed.exe -ocom0com
+        run: 7z x com0com-3.0.0.0-i386-and-x64-signed.zip *_x64_signed.exe
+      - run: Setup_com0com_v3.0.0.0_W7_x64_signed.exe /S
 
       # Manual com0com install because the installer only works with a GUI
       - name: Setup com0com
         timeout-minutes: 1
-        working-directory: com0com
+        working-directory: C:\Program Files (x86)\com0com
         continue-on-error: true
         run: |
           ./setupc.exe --detail-prms --silent preinstall

@@ -29,6 +29,7 @@ jobs:
 
       # Install needed extra tooling
       - run: choco install OpenCppCoverage
+      - run: Bcdedit -set TESTSIGNING ON
       - run: choco install com0com
         env:
           CNC_INSTALL_COMX_COMX_PORTS: YES

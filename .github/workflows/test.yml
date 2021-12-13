@@ -28,9 +28,8 @@ jobs:
       - run: echo color = always > ~/.npmrc
 
       # Install needed extra tooling
-      - run: |
-          choco install OpenCppCoverage
-          npm install npm@7
+      - run: choco install OpenCppCoverage
+      - run: npm install npm@7
       - run: choco install com0com
         env:
           CNC_INSTALL_COMX_COMX_PORTS: YES

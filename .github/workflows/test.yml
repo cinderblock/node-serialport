@@ -31,31 +31,7 @@ jobs:
       - run: |
           choco install OpenCppCoverage
           npm install npm@7
-        # choco install com0com
-
-      - uses: suisei-cn/actions-download-file@v1
-        # id: com0com
-        name: Download Official com0com installer
-        with:
-          url: 'https://downloads.sourceforge.net/project/com0com/com0com/3.0.0.0/com0com-3.0.0.0-i386-and-x64-signed.zip'
-      - name: Extract com0com installer
-        run: 7z x com0com-3.0.0.0-i386-and-x64-signed.zip *_x64_signed.exe
-      - name: Extract com0com setup to install manually
-        run: 7z x Setup_com0com_v3.0.0.0_W7_x64_signed.exe -ocom0com
-
-        # Manual com0com install because the installer only works with a GUI
-      - name: com0com preinstalll
-        working-directory: com0com
-        run: |
-          ./setupc.exe update
-          ./setupc.exe infclean
-      - name: com0com setup CNCA0 <-> CNCB0
-        working-directory: com0com
-        run: ./setupc.exe install 0 - -
-      - name: com0com setup COM# <-> COM#
-        working-directory: com0com
-        run: ./setupc.exe install PortName=COM# PortName=COM#
-
+      - run: choco install com0com
         env:
           CNC_INSTALL_COMX_COMX_PORTS: YES
           CNC_INSTALL_CNCA0_CNCB0_PORTS: YES

@@ -15,7 +15,7 @@ jobs:
       - run: npm run lint
   test-windows:
     runs-on: windows-latest
-    timeout-minutes: 6
+    timeout-minutes: 8
     strategy:
       fail-fast: false
       matrix:

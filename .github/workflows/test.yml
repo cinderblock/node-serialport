@@ -40,7 +40,9 @@ jobs:
           Set-Location -Path 'HKLM:\SOFTWARE\WOW6432Node'
 
           Get-Item -Path 'HKLM:\SOFTWARE\WOW6432Node' | New-Item -Name 'Electronic Team\VspdPro\Loopback#1\IN' -Force
+          Get-Item -Path 'HKLM:\SOFTWARE\WOW6432Node' | New-Item -Name 'Electronic Team\VspdPro\Loopback#1\OUT' -Force
 
+          New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Electronic Team\VspdPro\Loopback#1' -Name '@' -Value "" -PropertyType String -Force
           New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Electronic Team\VspdPro\Loopback#1' -Name 'InMain' -Value "" -PropertyType String -Force
           New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Electronic Team\VspdPro\Loopback#1' -Name 'OutMain' -Value "" -PropertyType String -Force
           New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Electronic Team\VspdPro\Loopback#1' -Name 'type' -Value "00000008" -PropertyType dword -Force

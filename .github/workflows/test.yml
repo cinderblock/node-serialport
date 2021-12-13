@@ -41,20 +41,20 @@ jobs:
         run: 7z x Setup_com0com_v3.0.0.0_W7_x64_signed.exe -ocom0com
 
         # Manual com0com install because the installer only works with a GUI
-      - name: com0com preinstall
-        timeout-minutes: 1
-        working-directory: com0com
-        run: |
-          ./setupc.exe update
-          ./setupc.exe infclean
+      # - name: com0com preinstall
+      #   timeout-minutes: 1
+      #   working-directory: com0com
+      #   run: ./setupc.exe update
+      #     ./setupc.exe infclean
       - name: com0com setup CNCA0 <-> CNCB0
         timeout-minutes: 1
         working-directory: com0com
-        run: ./setupc.exe install 0 - -
-      - name: com0com setup COM# <-> COM#
-        timeout-minutes: 1
-        working-directory: com0com
-        run: ./setupc.exe install PortName=COM# PortName=COM#
+        run: ./setupc.exe --silent install 0 - -
+        continue-on-error: true
+        # - name: com0com setup COM# <-> COM#
+        #   timeout-minutes: 1
+        #   working-directory: com0com
+        #   run: ./setupc.exe install PortName=COM# PortName=COM#
 
         env:
           CNC_INSTALL_COMX_COMX_PORTS: YES

@@ -41,7 +41,13 @@ jobs:
       # Rebuild the project with coverage instrumentation
       - run: npm run rebuild -- -- --debug
 
-      - run: set PATH
+      - name: com0com setup CNCA0 <-> CNCB0
+        timeout-minutes: 1
+        run: C:\Progra~1\com0com\setupc.exe install 0 - -
+
+      - name: com0com setup COM# <-> COM#
+        timeout-minutes: 1
+        run: C:\Progra~1\com0com\setupc.exe install PortName=COM# PortName=COM#
 
       # Run tests and generate coverage report
       - name: Run npm test with coverage

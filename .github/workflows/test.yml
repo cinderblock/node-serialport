@@ -43,11 +43,11 @@ jobs:
 
       - name: com0com setup CNCA0 <-> CNCB0
         timeout-minutes: 1
-        run: C:\Progra~1\com0com\setupc.exe install 0 - -
+        run: C:\Progra~2\com0com\setupc.exe install 0 - -
 
       - name: com0com setup COM# <-> COM#
         timeout-minutes: 1
-        run: C:\Progra~1\com0com\setupc.exe install PortName=COM# PortName=COM#
+        run: C:\Progra~2\com0com\setupc.exe install PortName=COM# PortName=COM#
 
       # Run tests and generate coverage report
       - name: Run npm test with coverage

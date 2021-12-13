@@ -46,10 +46,35 @@ jobs:
         continue-on-error: true
         run: |
           ./setupc.exe --detail-prms --silent preinstall
+      - name: Setup com0com
+        timeout-minutes: 1
+        working-directory: C:\Program Files (x86)\com0com
+        continue-on-error: true
+        run: |
           ./setupc.exe --detail-prms --silent update
+      - name: Setup com0com
+        timeout-minutes: 1
+        working-directory: C:\Program Files (x86)\com0com
+        continue-on-error: true
+        run: |
           ./setupc.exe --detail-prms --silent infclean
+      - name: Setup com0com
+        timeout-minutes: 1
+        working-directory: C:\Program Files (x86)\com0com
+        continue-on-error: true
+        run: |
           ./setupc.exe --detail-prms --silent list
+      - name: Setup com0com
+        timeout-minutes: 1
+        working-directory: C:\Program Files (x86)\com0com
+        continue-on-error: true
+        run: |
           ./setupc.exe --detail-prms --silent reload
+      - name: Setup com0com
+        timeout-minutes: 1
+        working-directory: C:\Program Files (x86)\com0com
+        continue-on-error: true
+        run: |
           ./setupc.exe --detail-prms --silent install 0 - -
 
       - run: npm ci

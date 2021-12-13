@@ -46,9 +46,12 @@ jobs:
         working-directory: com0com
         continue-on-error: true
         run: |
+          ./setupc.exe --detail-prms --silent preinstall
           ./setupc.exe --detail-prms --silent update
-          ./setupc.exe --detail-prms --silent install 0 - -
+          ./setupc.exe --detail-prms --silent infclean
           ./setupc.exe --detail-prms --silent list
+          ./setupc.exe --detail-prms --silent reload
+          ./setupc.exe --detail-prms --silent install 0 - -
 
       - run: npm ci
 

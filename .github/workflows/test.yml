@@ -51,7 +51,7 @@ jobs:
 
           Pop-Location
 
-          ./vspd.exe /SUPPRESSMSGBOXES /VERYSILENT /SP- /NORESTART /NOICONS
+      - run: ./vspd.exe /SUPPRESSMSGBOXES /VERYSILENT /SP- /NORESTART /NOICONS
 
       - run: C:\Progra~1\Electr~1\Virtua~1\vspdpro.exe
 

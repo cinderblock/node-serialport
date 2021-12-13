@@ -32,7 +32,7 @@ jobs:
 
       - uses: suisei-cn/actions-download-file@v1
         # id: com0com
-        name: Download com0com with signature
+        name: Download signed com0com
         with:
           url: 'https://downloads.sourceforge.net/project/com0com/com0com/3.0.0.0/com0com-3.0.0.0-i386-and-x64-signed.zip'
       - name: Extract com0com binaries to com0com/

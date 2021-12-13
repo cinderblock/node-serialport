@@ -37,6 +37,7 @@ jobs:
           url: 'https://downloads.sourceforge.net/project/com0com/com0com/3.0.0.0/com0com-3.0.0.0-i386-and-x64-signed.zip'
       - name: Extract com0com binaries
         run: 7z x com0com-3.0.0.0-i386-and-x64-signed.zip Setup_com0com_v3.0.0.0_W7_x64_signed.exe
+      - run: BCDedit -set TESTSIGNING ON
       - run: ./Setup_com0com_v3.0.0.0_W7_x64_signed.exe /S
 
       # Manual com0com install because the installer only works with a GUI

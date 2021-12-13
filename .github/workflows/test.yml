@@ -38,7 +38,7 @@ jobs:
       - name: Extract com0com binaries to com0com/
         run: |
           7z x com0com-3.0.0.0-i386-and-x64-signed.zip *_x64_signed.exe
-          7z x Setup_com0com_v3.0.0.0_W7_x64_signed.exe -o../com0com
+          7z x Setup_com0com_v3.0.0.0_W7_x64_signed.exe -o..\com0com
 
       # Manual com0com install because the installer only works with a GUI
       - name: Setup com0com

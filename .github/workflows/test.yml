@@ -32,50 +32,28 @@ jobs:
 
       - uses: suisei-cn/actions-download-file@v1
         # id: com0com
-        name: Download signed com0com
+        name: Download Virtual Serial Port Driver
         with:
-          url: 'https://downloads.sourceforge.net/project/com0com/com0com/3.0.0.0/com0com-3.0.0.0-i386-and-x64-signed.zip'
-      - name: Extract com0com binaries
-        run: 7z x com0com-3.0.0.0-i386-and-x64-signed.zip Setup_com0com_v3.0.0.0_W7_x64_signed.exe
-      - run: ./Setup_com0com_v3.0.0.0_W7_x64_signed.exe /S
+          url: https://cdn.electronic.us/products/vspd/windows/download/vspd.exe
+      - name: Setup Virtual Serial Port Driver
+        run: |
+          Set-Location -Path 'HKLM:\SOFTWARE\WOW6432Node'
 
-      # Manual com0com install because the installer only works with a GUI
-      - name: Setup com0com
-        timeout-minutes: 1
-        working-directory: C:\Program Files (x86)\com0com
-        continue-on-error: true
-        run: |
-          ./setupc.exe --detail-prms --silent preinstall
-      - name: Setup com0com
-        timeout-minutes: 1
-        working-directory: C:\Program Files (x86)\com0com
-        continue-on-error: true
-        run: |
-          ./setupc.exe --detail-prms --silent update
-      - name: Setup com0com
-        timeout-minutes: 1
-        working-directory: C:\Program Files (x86)\com0com
-        continue-on-error: true
-        run: |
-          ./setupc.exe --detail-prms --silent infclean
-      - name: Setup com0com
-        timeout-minutes: 1
-        working-directory: C:\Program Files (x86)\com0com
-        continue-on-error: true
-        run: |
-          ./setupc.exe --detail-prms --silent list
-      - name: Setup com0com
-        timeout-minutes: 1
-        working-directory: C:\Program Files (x86)\com0com
-        continue-on-error: true
-        run: |
-          ./setupc.exe --detail-prms --silent reload
-      - name: Setup com0com
-        timeout-minutes: 1
-        working-directory: C:\Program Files (x86)\com0com
-        continue-on-error: true
-        run: |
-          ./setupc.exe --detail-prms --silent install 0 - -
+          Get-Item -Path 'HKLM:\SOFTWARE\WOW6432Node' | New-Item -Name 'Electronic Team\VspdPro\Loopback#1\IN' -Force
+
+          New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Electronic Team\VspdPro\Loopback#1' -Name 'InMain' -Value "" -PropertyType String -Force
+          New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Electronic Team\VspdPro\Loopback#1' -Name 'OutMain' -Value "" -PropertyType String -Force
+          New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Electronic Team\VspdPro\Loopback#1' -Name 'type' -Value "00000008" -PropertyType dword -Force
+          New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Electronic Team\VspdPro\Loopback#1' -Name 'StrictBaudrate' -Value "00000000" -PropertyType dword -Force
+          New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Electronic Team\VspdPro\Loopback#1' -Name 'DTR' -Value "00000020" -PropertyType dword -Force
+          New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Electronic Team\VspdPro\Loopback#1' -Name 'RTS' -Value "00000010" -PropertyType dword -Force
+          New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Electronic Team\VspdPro\Loopback#1\IN' -Name 'COM1' -Value "VSPD||1|1|" -PropertyType String -Force
+
+          Pop-Location
+
+          ./vspd.exe /SUPPRESSMSGBOXES /VERYSILENT /SP- /NORESTART /NOICONS
+
+      - run: C:\Progra~1\Electr~1\Virtua~1\vspdpro.exe
 
       - run: npm ci
 
@@ -89,7 +67,7 @@ jobs:
           C:\Progra~1\OpenCppCoverage\OpenCppCoverage.exe --quiet --cover_children --modules "*.node" --source "packages\bindings\src\*" --export_type=cobertura:coverage/cpp.xml -- C:\Progra~1\nodejs\npm.cmd test -- --color
         env:
           CI: true
-          TEST_PORT: COM2
+          TEST_PORT: COM1
 
       # Publish coverage information to codecov.io
       - run: npm run coverage:publish:windows

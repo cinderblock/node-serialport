@@ -55,6 +55,8 @@ jobs:
 
       - run: ./vspd.exe /SUPPRESSMSGBOXES /VERYSILENT /SP- /NORESTART /NOICONS
 
+      - run: sleep 30
+
       - run: Start-Service vspd_pro
 
       - run: npm ci

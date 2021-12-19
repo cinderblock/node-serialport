@@ -55,7 +55,7 @@ jobs:
 
       - run: ./vspd.exe /SUPPRESSMSGBOXES /VERYSILENT /SP- /NORESTART /NOICONS
 
-      - run: C:\Progra~1\Electr~1\Virtua~1\vspdpro.exe
+      - run: Start-Service vspd_pro
 
       - run: npm ci
 

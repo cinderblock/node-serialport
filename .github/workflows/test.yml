@@ -59,6 +59,8 @@ jobs:
 
       - run: sleep 30
 
+      - run: Get-Service
+
       - run: Start-Service vspd_pro
 
       - run: npm ci

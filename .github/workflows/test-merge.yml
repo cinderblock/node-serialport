@@ -7,6 +7,10 @@ permissions:
 jobs:
   test-merge:
     runs-on: ${{ matrix.config.os }}
+    permissions:
+      contents: read
+      # Lets codecov-action authenticate with OIDC instead of a stored token
+      id-token: write
     strategy:
       matrix:
         config:
@@ -21,6 +25,9 @@ jobs:
           node-version: 18
       - run: npm ci
       - run: npm test
-      - uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # v3
+      - uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
         with:
-          directory: ./coverage/
+          files: ./coverage/lcov.info
+          disable_search: true
+          # OIDC isn't available to pull requests from forks; those upload tokenless instead
+          use_oidc: ${{ !github.event.pull_request.head.repo.fork }}

@@ -29,5 +29,7 @@ jobs:
         with:
           files: ./coverage/lcov.info
           disable_search: true
+          # lcov.info is the whole report; don't let the uploader run gcov/xcode/coverage.py itself
+          plugins: noop
           # OIDC isn't available to pull requests from forks; those upload tokenless instead
           use_oidc: ${{ !github.event.pull_request.head.repo.fork }}
